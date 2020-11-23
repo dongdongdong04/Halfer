@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xttblog.cisp.dao.LikeMapper">
+  <insert id="create" useGeneratedKeys="true" keyProperty="id">
+    insert into likes(user_id,article_id,create_time)
+    values (#{userId},#{articleId},now())
+  </insert>
+
+    <select id="getLikeByArticleId" parameterType="int" resultType="com.xttblog.cisp.domain.Like">
+    select * from likes where article_id = #{articleId} order by create_time desc
+  </select>
+
+    <delete id="delete">
+    delete from likes where id = #{id}
+  </delete>
+
+    <select id="getById" resultType="com.xttblog.cisp.domain.Like">
+    select * from likes where id = #{id}
+  </select>
+
+    <delete id="deleteByArticleId">
+    delete from likes where article_id = #{articleId}
+  </delete>
+
+  <select id="getByUserAndArticle" resultType="com.xttblog.cisp.domain.Like">
+    select * from likes where article_id = #{articleId} and user_id= #{userId}
+  </select>
+</mapper>
