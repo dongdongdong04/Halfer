@@ -137,6 +137,11 @@ layui.use(['form', 'jquery'], function () {
       if (pwd != value) {
         return '密码与确认密码不一致!';
       }
+    },
+    required: function (value, item){
+      if(value != 2){
+        return "人类验证失败!";
+      }
     }
   });
 
